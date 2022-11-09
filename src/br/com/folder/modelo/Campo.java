@@ -13,12 +13,12 @@ public class Campo {
 	
 	private List<Campo> vizinhos = new ArrayList<>();
 	
-	Campo(int linha, int coluna){
+	public Campo(int linha, int coluna){
 		this.linha = linha;
 		this.coluna = coluna;
 	}
 	
-	boolean adicionarVizinho(Campo vizinho) {
+	public boolean adicionarVizinho(Campo vizinho) {
 		boolean linhaDiferente = linha != vizinho.linha;
 		boolean colunaDiferente = coluna != vizinho.coluna;
 		boolean diagonal = linhaDiferente && colunaDiferente;

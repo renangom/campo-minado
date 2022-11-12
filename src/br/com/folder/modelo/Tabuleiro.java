@@ -22,12 +22,16 @@ public class Tabuleiro {
 	}
 
 	private void sortearMinas() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	private void associarVizinhos() {
-		// TODO Auto-generated method stub
+		for(Campo c1: campos) {
+			for(Campo c2: campos) {
+				c1.adicionarVizinho(c2);
+			}
+		}
 		
 	}
 

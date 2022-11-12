@@ -1,6 +1,7 @@
 package br.com.folder.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Tabuleiro {
@@ -31,7 +32,12 @@ public class Tabuleiro {
 	}
 
 	private void gerarCampos() {
-		// TODO Auto-generated method stub
+		for (int i = 0; i < linhas; i++) {
+			for(int j = 0; j < colunas; j++) {
+				campos.add(new Campo(i,j));
+			}
+			
+		}
 		
 	}
 }

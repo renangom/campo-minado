@@ -113,4 +113,32 @@ class CampoTeste {
 			campo.abrir();
 		});	
 	}
+	
+	@Test
+	void abrirComVizinhos() {
+		Campo vizinho1 = new Campo(2,2);
+		Campo vizinhoDoVizinho1 = new Campo(1,1);
+
+		vizinho1.adicionarVizinho(vizinhoDoVizinho1);
+		campo.adicionarVizinho(vizinho1);
+		
+		campo.abrir();
+		
+		assertTrue(vizinho1.isAberto() && vizinhoDoVizinho1.isAberto());
+
+
+	}
+	
+	@Test
+	void abrirComVizinhosMinados() {
+		Campo vizinho22 = new Campo(2,2);
+		Campo vizinho11 = new Campo(1,1);
+		
+		campo.adicionarVizinho(vizinho22);
+		vizinho22.adicionarVizinho(vizinho11);
+		
+		vizinho11.minar();
+		campo.abrir();
+		assertFalse(vizinho11.isAberto());
+	}
 }

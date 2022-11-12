@@ -46,7 +46,7 @@ public class Campo {
 		}
 	}
 	
-	boolean abrir() {
+	public boolean abrir() {
 		if(!aberto &&  !marcado) {
 			aberto = true;
 			
@@ -70,6 +70,10 @@ public class Campo {
 	
 	public boolean isMarcado() {
 		return marcado;
+	}
+	
+	public void minar() {
+			minado = true;
 	}
 	
 	

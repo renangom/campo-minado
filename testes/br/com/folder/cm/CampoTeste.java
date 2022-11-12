@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.folder.excecao.ExplosaoException;
 import br.com.folder.modelo.Campo;
 
 class CampoTeste {
@@ -77,5 +78,39 @@ class CampoTeste {
 	void alternarMarcacao() {
 		campo.alternarMarcacao();
 		assertTrue(campo.isMarcado());
+	}
+	
+	@Test 
+	void alternarMarcacaoDuasVezes() {
+		campo.alternarMarcacao();
+		campo.alternarMarcacao();
+		assertFalse(campo.isMarcado());
+	}
+	
+	@Test
+	void abrirNaoMinadoNaoMarcado() {
+		assertTrue(campo.abrir());	
+	}
+	
+	@Test
+	void abrirNaoMinadoMarcado() {
+		campo.alternarMarcacao();
+		assertFalse(campo.abrir());
+	}
+	
+	@Test
+	void abrirMinadoMarcado() {
+		campo.minar();
+		campo.alternarMarcacao();
+		assertFalse(campo.abrir());
+	}
+	
+	@Test
+	void abrirMinadoNaoMarcado() {
+		campo.minar();
+		
+		assertThrows(ExplosaoException.class, () -> {
+			campo.abrir();
+		});	
 	}
 }

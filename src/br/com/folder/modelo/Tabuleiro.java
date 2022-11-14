@@ -3,6 +3,7 @@ package br.com.folder.modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Tabuleiro {
 	private int linhas;
@@ -22,7 +23,14 @@ public class Tabuleiro {
 	}
 
 	private void sortearMinas() {
-		
+		long minasArmadas = 0;
+		Predicate<Campo> minado = c -> c.isMinado();
+		do {
+			minasArmadas = campos.stream().filter(minado).count();
+			
+			int aleatorios = Math.random() * campos.size();
+			campos.get(aleatorios).minar();
+		}while(minasArmadas < minas);
 		
 	}
 

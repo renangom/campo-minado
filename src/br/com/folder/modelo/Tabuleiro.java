@@ -61,4 +61,21 @@ public class Tabuleiro {
 		campos.stream().forEach(c -> c.reiniciar());
 		sortearMinas();
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		int i = 0;
+		for(int l = 0; l < linhas; l++) {
+			for(int c = 0; c < colunas; c++) {
+				sb.append(" ");
+				sb.append(campos.get(i));
+				sb.append(" ");
+				i++;
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
 }

@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
+import br.com.folder.excecao.ExplosaoException;
+
 public class Tabuleiro {
 	private int linhas;
 	private int colunas;
@@ -23,10 +25,16 @@ public class Tabuleiro {
 	}
 	
 	public void abrir(int linha, int coluna) {
-		campos.parallelStream()
+		try {
+			campos.parallelStream()
 			.filter(c -> c.getLinha() == linha && c.getColuna() == coluna)
 			.findFirst()
 			.ifPresent(c -> c.abrir());
+			
+		}catch(ExplosaoException e) {
+			campos.forEach(c -> c.setAberto(true));
+			throw e;
+		}
 	}
 	
 	public void marcar(int linha, int coluna) {
@@ -68,7 +76,7 @@ public class Tabuleiro {
 	}
 	
 	public boolean objetivoAlcancado() {
-		return campos.stream().allMatch(c -> objetivoAlcancado());
+		return campos.stream().allMatch(c -> c.objetivoAlcancado());
 	}
 	
 	public void reiniciar() {
